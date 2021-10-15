@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="orderContainer">
+      <a href="./mozo.html">Atrás</a>
+      <header id="orden">
+        <h1>Seleción de orden</h1>
+        <h2 id="mesa"></h2>
+      </header>
+      <div id="mainOrden">
+        <div id="cantidadContainer">
+          <input
+            type="number"
+            name="cantidadValor"
+            id="cantidadValor"
+            placeholder="1"
+            value="1"
+          />
+        </div>
+
+        <section id="menuSelection">
+          <h3>Menú</h3>
+          <div id="categories"></div>
+          <div id="menuListed">
+            <div id="product"></div>
+          </div>
+        </section>
+
+        <section id="orderedItems">
+          <h3>Orden</h3>
+          <div id="seleccionOrden">
+            <table id="tableList">
+              <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+              </tr>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <div id="totalContainer">
+        <p>Total:</p>
+        <div id="total"></div>
+      </div>
+      <button id="sendKitchen">Enviar a Cocina</button>
+      <button id="closeTable">Cerrar mesa</button>
+    </div>
+
+    <script src="../js/objects.js"></script>
+    <script src="../js/menu.js"></script>
+    <script src="../js/events.js"></script>
+    <script src="../js/main.js"></script>
+  </body>
+</html>

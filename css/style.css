@@ -1,0 +1,139 @@
+#heroSection{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.linkButton{
+    border-style: solid;
+    border-radius: 5px;
+    border-width: 1px;
+    padding: 8px;
+    margin: 3px;
+    text-decoration: none;
+    color: black;
+    line-height: 45px;
+}
+
+.cocina, .mozo{
+    width: 65px;
+    height: auto;
+}
+
+#heroButtons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 175px;
+}
+
+body#indexMesa{
+    margin: 0;
+    padding: 0;
+    display:grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 1fr 4fr 1fr;
+    grid-template-areas: 
+    "header header header"
+    "side1 main side2"
+    "footer footer footer";
+    height: 100vh;
+}
+
+#mesaPrincipal{
+    text-align: center;
+    grid-area: header;
+}
+
+h1{
+    font-size: 3em;
+}
+
+#orden>h1,h2{
+    text-align: center;
+}
+
+#table{
+    grid-area: main;
+    place-self: center;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.botonMesa{
+    height: 85px;
+    width: 85px;
+    margin: 15px;
+    place-self: center;
+}
+
+#orderContainer{
+    height: 90vh;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas:
+    "header header header"
+    "main main main"
+    ". footer .";
+}
+
+#mainOrden{
+    grid-area: main;
+    margin: auto;
+    width: 50%;
+    height: 60%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 25px 2fr;
+    grid-template-areas: 
+    "cantidad cantidad"
+    "menu orden";
+}
+
+#totalContainer{
+    grid-area: footer;
+}
+
+#cantidadContainer{
+    grid-area: cantidad;
+    place-self: center;
+}
+
+h3{
+    text-align: center;
+}
+
+
+#product{
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.botonOrden{
+    background-color: white;
+    margin: 5px;
+}
+
+.precio{
+    margin: 5px;
+    padding: 4px;
+}
+
+#tableList{
+    width: 100%;
+}
+
+#kitchenContainer{
+    display: flex;
+}
+
+.card{
+    margin: 15px;
+    padding: 10px;
+    border-style: solid;
+    border-radius: 15px;
+}
