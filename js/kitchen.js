@@ -4,6 +4,7 @@ for(const mesa in kitchenOrder){
     let number = mesa.split("_")[1];
     $("#kitchenContainer").append(`<div class="card">
                                         <h3>Mesa ${number}</h3>
+                                        <p id="state${number}">${kitchenOrder[mesa].State}</p>
                                         <table class="tableKitchen">
                                             <tr>
                                                 <th>Producto</th>
@@ -11,10 +12,13 @@ for(const mesa in kitchenOrder){
                                             </tr>
                                             ${tableRows(mesa)}
                                         </table>
-                                        <button>Iniciar</button>
-                                        <button>Terminar</button>
+                                        <button id="start${number}">Iniciar</button>
+                                        <button id="finish${number}">Terminar</button>
                                    </div>`);
-
+    $(`#start${number}`).click(()=>{
+        kitchenOrder[mesa].State = "cocinando";
+        $(`#state${number}`).html(`${kitchenOrder[mesa].State}`);
+    });
 };
 
 function tableRows(mesa){
@@ -28,3 +32,4 @@ function tableRows(mesa){
     }
     return(rows);
 };
+

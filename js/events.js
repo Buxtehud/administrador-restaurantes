@@ -85,6 +85,7 @@ function addOrder(value) {
   };
 
   total.innerHTML = sum;
+  document.getElementById("cantidadValor").value = "1";
 };
 
 function addOne(i) {

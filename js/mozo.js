@@ -7,4 +7,4 @@ function load() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", load, false);
+$(document).ready(load);
