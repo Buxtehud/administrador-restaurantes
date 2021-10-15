@@ -132,5 +132,6 @@ sendKitchen.onclick = () => {
   order.Orders = totalOrder;
   order.State = "enviado";
   kitchenOrder[`Mesa_${mesaNumero}`] = order;
-  localStorage.setItem("kitchenOrder",JSON.stringify(kitchenOrder))
+  localStorage.setItem("kitchenOrder",JSON.stringify(kitchenOrder));
+  alert("Enviado a la cocina");
 };
