@@ -16,7 +16,7 @@ for(const mesa in kitchenOrder){
                                         <button id="finish${number}">Terminar</button>
                                    </div>`);
     $(`#start${number}`).click(()=>{
-        kitchenOrder[mesa].State = "cocinando";
+        kitchenOrder[mesa].State = "Cocinando";
         $(`#state${number}`).html(`${kitchenOrder[mesa].State}`);
     });
 };
