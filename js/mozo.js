@@ -8,3 +8,8 @@ function load() {
 }
 
 $(document).ready(load);
+
+function orderMenu(number) {
+  localStorage.setItem("mesa", number);
+  window.location = "./order.html";
+};

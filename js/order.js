@@ -1,7 +1,16 @@
+const menuList = JSON.parse(menu);
+
 let kitchenOrder = JSON.parse(localStorage.getItem("kitchenOrder"));
 let mesa = JSON.parse(localStorage.getItem("mesa"));
 
+let mesaNumero = localStorage.getItem("mesa");
+
+let mesaNombre = document.getElementById("mesa");
+mesaNombre.innerHTML = `Mesa ${mesaNumero}`;
+
 let mesaName = `Mesa_${mesa}`;
+
+let sendKitchen = document.getElementById("sendKitchen");
 
 //Esta función revisa si existen ordenes creadas para esta mesa y rellena los espacios correspondientes con las órdenes cuando la página carga.
 function checkIfTable() {
@@ -41,6 +50,15 @@ function checkIfTable() {
 };
 
 $("document").ready(checkIfTable());
+
+for (const category in menuList) {
+  let categoryContainer = document.getElementById("categories");
+  let categorySelector = document.createElement("button");
+  categorySelector.innerHTML = category;
+  categoryContainer.appendChild(categorySelector);
+  categorySelector.setAttribute("class", "categorySelectorClass");
+  categorySelector.setAttribute("onclick", `categorySelector(this.innerHTML)`);
+}
 
 
 function categorySelector(category) {
