@@ -11,9 +11,11 @@ mesaNombre.innerHTML = `Mesa ${mesaNumero}`;
 let mesaName = `Mesa-${mesa}`;
 
 let sendKitchen = document.getElementById("sendKitchen");
+let closeTable = document.getElementById("closeTable");
 
 //Esta función revisa si existen ordenes creadas para esta mesa y rellena los espacios correspondientes con las órdenes cuando la página carga.
 function checkIfTable() {
+  initTable();
   let total = 0;
   if (kitchenOrder != null) {
     if (mesaName in kitchenOrder) {
@@ -47,6 +49,17 @@ function checkIfTable() {
       $("#total").html(`${total}`);
     };
   };
+};
+
+function initTable() {
+  $("#tableList").html("")
+  $("#tableList").append(`<tr>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                            <th>Precio</th>
+                            <th></th>
+                            <th></th>
+                          </tr>`);
 };
 
 $("document").ready(checkIfTable());
@@ -104,6 +117,7 @@ function addOrder(value) {
 
   if (exist) {
     $(`#cantidad-${i}`).html(totalOrder[i].cantidad);
+    console.log("yes");
   } else {
     totalOrder.push(orderAdded);
     for (const element in orderAdded) {
@@ -189,10 +203,39 @@ sendKitchen.onclick = () => {
     kitchenOrder = {};
   };
   let mesaNumero = localStorage.getItem("mesa");
+  let date = new Date;
   let order = {};
   order.Orders = totalOrder;
   order.State = "Enviado";
+  order.DateStart = date;
+  console.log()
   kitchenOrder[`Mesa-${mesaNumero}`] = order;
   localStorage.setItem("kitchenOrder", JSON.stringify(kitchenOrder));
   alert("Enviado a la cocina");
+};
+
+closeTable.onclick = () => {
+
+  let orderHistory = [];
+
+  if(localStorage.orderHistory != null){
+    orderHistory = JSON.parse(localStorage.getItem("orderHistory"));
+  };
+  
+  let kitchenOrder = JSON.parse(localStorage.getItem("kitchenOrder"));
+  let mesaNumero = localStorage.getItem("mesa");
+  let totalSpent = parseFloat(document.getElementById("total").innerHTML);
+  let date = new Date;
+  kitchenOrder[`Mesa-${mesaNumero}`].DateFinish = date;
+  let timeSpent = Date.parse(kitchenOrder[`Mesa-${mesaNumero}`].DateFinish) - Date.parse(kitchenOrder[`Mesa-${mesaNumero}`].DateStart);
+  dateText = `${date.getDay()}-${date.getMonth()}-${date.getFullYear()}`;
+  orderEnd = new orderFinished(kitchenOrder[`Mesa-${mesaNumero}`].Orders, timeSpent, totalSpent, mesaNumero, dateText);
+  orderHistory.push(orderEnd);
+  delete kitchenOrder[`Mesa-${mesaNumero}`];
+  localStorage.setItem("kitchenOrder", JSON.stringify(kitchenOrder));
+  document.getElementById("total").innerHTML = 0;
+  totalOrder=[];
+  alert("Mesa cerrada");
+  initTable();
+  localStorage.setItem("orderHistory",JSON.stringify(orderHistory));
 };
