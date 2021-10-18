@@ -18,7 +18,4 @@ let listProd = document.getElementById("product");
 
 let table = document.getElementById("tableList");
 
-let total = document.getElementById("total");
-total.innerHTML = 0;
-
 let sendKitchen = document.getElementById("sendKitchen");
