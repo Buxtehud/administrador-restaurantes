@@ -50,6 +50,7 @@ body#indexMesa{
 
 h1{
     font-size: 3em;
+    text-align: center;
 }
 
 #orden>h1,h2{

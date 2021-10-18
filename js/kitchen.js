@@ -1,7 +1,7 @@
 let kitchenOrder = JSON.parse(localStorage.getItem("kitchenOrder"));
 
 for(const mesa in kitchenOrder){
-    let number = mesa.split("_")[1];
+    let number = mesa.split("-")[1];
 
     if(kitchenOrder[mesa].State == "Enviado" || kitchenOrder[mesa].State == "Cocinando"){
         $("#kitchenContainer").append(`<div class="card" id="card${number}">

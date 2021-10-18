@@ -8,20 +8,21 @@ let mesaNumero = localStorage.getItem("mesa");
 let mesaNombre = document.getElementById("mesa");
 mesaNombre.innerHTML = `Mesa ${mesaNumero}`;
 
-let mesaName = `Mesa_${mesa}`;
+let mesaName = `Mesa-${mesa}`;
 
 let sendKitchen = document.getElementById("sendKitchen");
 
 //Esta función revisa si existen ordenes creadas para esta mesa y rellena los espacios correspondientes con las órdenes cuando la página carga.
 function checkIfTable() {
   let total = 0;
-  if (mesaName in kitchenOrder) {
-    for (const order in kitchenOrder[mesaName].Orders) {
-      producto = kitchenOrder[mesaName].Orders[order].producto;
-      cantidad = kitchenOrder[mesaName].Orders[order].cantidad;
-      precio = kitchenOrder[mesaName].Orders[order].precio;
+  if (kitchenOrder != null) {
+    if (mesaName in kitchenOrder) {
+      for (const order in kitchenOrder[mesaName].Orders) {
+        producto = kitchenOrder[mesaName].Orders[order].producto;
+        cantidad = kitchenOrder[mesaName].Orders[order].cantidad;
+        precio = kitchenOrder[mesaName].Orders[order].precio;
 
-      $("#tableList").append(`<tr id="order-${order}">
+        $("#tableList").append(`<tr id="order-${order}">
                                 <td class="producto" id="producto-${order}">${producto}</td>
                                 <td class="cantidad" id="cantidad-${order}">${cantidad}</td>
                                 <td class="precio" id="precio-${order}">${precio}</td>
@@ -29,23 +30,22 @@ function checkIfTable() {
                                 <td><button id="minus-${order}">-</button></td>
                               </tr>`);
 
-      $(`#plus-${order}`).click(() => addOne(order));
-      $(`#minus-${order}`).click(() => deleteOne(order));
+        $(`#plus-${order}`).click(() => addOne(order));
+        $(`#minus-${order}`).click(() => deleteOne(order));
 
-      total = cantidad * precio + total;
+        total = cantidad * precio + total;
 
-      const orderAdded = new newOrder(
-        producto,
-        cantidad,
-        precio
-      );
+        const orderAdded = new newOrder(
+          producto,
+          cantidad,
+          precio
+        );
 
-      totalOrder.push(orderAdded);
+        totalOrder.push(orderAdded);
+      };
+
+      $("#total").html(`${total}`);
     };
-
-    $("#total").html(`${total}`);
-  } else {
-    $("#total").html(`0`);
   };
 };
 
@@ -62,7 +62,7 @@ for (const category in menuList) {
 
 
 function categorySelector(category) {
-  
+
   $("#product").html(""); //Vacío el div de botones.
 
   let list = menuList[category];
@@ -89,6 +89,7 @@ function addOrder(value) {
     orderedFood.precio
   );
   //
+  let table = document.getElementById("tableList");
   let row = document.createElement("tr");
   let exist = false;
   let i = 0;
@@ -133,13 +134,13 @@ function addOrder(value) {
 
   let totalElement = document.getElementById("total");
 
-  suma(totalElement,totalOrder[i].precio,cantidad);
-  
+  suma(totalElement, totalOrder[i].precio, cantidad);
+
 
   document.getElementById("cantidadValor").value = "1";
 };
 
-function suma(element,precio,cantidad){
+function suma(element, precio, cantidad) {
   let total = parseFloat(element.innerHTML);
   sum = total;
   prod = cantidad * precio;
@@ -168,10 +169,10 @@ function modifyValue(i, operation) {
 
     if (operation == "add") {
       totalOrder[i].cantidad += 1;
-      suma(totalElement,totalOrder[i].precio,1);
+      suma(totalElement, totalOrder[i].precio, 1);
     } else if (operation == "delete" && totalOrder[i].cantidad != 0) {
       totalOrder[i].cantidad -= 1;
-      suma(totalElement,totalOrder[i].precio,-1);
+      suma(totalElement, totalOrder[i].precio, -1);
     };
 
     newCantidad.innerHTML = totalOrder[i].cantidad;
@@ -191,7 +192,7 @@ sendKitchen.onclick = () => {
   let order = {};
   order.Orders = totalOrder;
   order.State = "Enviado";
-  kitchenOrder[`Mesa_${mesaNumero}`] = order;
+  kitchenOrder[`Mesa-${mesaNumero}`] = order;
   localStorage.setItem("kitchenOrder", JSON.stringify(kitchenOrder));
   alert("Enviado a la cocina");
 };
