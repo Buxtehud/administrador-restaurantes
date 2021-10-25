@@ -197,6 +197,11 @@ function modifyValue(i, operation) {
   };
 };
 
+// Para desafío de AJAX
+
+const URLPOST = 'https://jsonplaceholder.typicode.com/posts';
+
+
 sendKitchen.onclick = () => {
   let kitchenOrder = JSON.parse(localStorage.getItem("kitchenOrder"));
   if (kitchenOrder == null) {
@@ -210,8 +215,18 @@ sendKitchen.onclick = () => {
   order.DateStart = date;
   console.log()
   kitchenOrder[`Mesa-${mesaNumero}`] = order;
+  
+  //Cambio el alert() por una función callback de post, que al tener un envío exitoso, haga aparecer el mensaje en la parte inferior.
+
+  $.post(URLPOST,kitchenOrder,(state)=>{
+    if(state = "success"){
+      $("#alert").addClass("show");
+      setTimeout(()=>{
+        $("#alert").removeClass("show");
+      },2000);
+    };
+  });
   localStorage.setItem("kitchenOrder", JSON.stringify(kitchenOrder));
-  alert("Enviado a la cocina");
 };
 
 closeTable.onclick = () => {
