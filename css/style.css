@@ -31,8 +31,6 @@
 }
 
 body#indexMesa{
-    margin: 0;
-    padding: 0;
     display:grid;
     grid-template-columns: 1fr 2fr 1fr;
     grid-template-rows: 1fr 4fr 1fr;
@@ -69,39 +67,22 @@ h1{
     height: 85px;
     width: 85px;
     margin: 15px;
-    place-self: center;
-}
-
-#orderContainer{
-    height: 90vh;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-template-areas:
-    "header header header"
-    "main main main"
-    ". footer .";
+    border-radius: 13px;
 }
 
 #mainOrden{
-    grid-area: main;
-    margin: auto;
-    width: 50%;
+    width: 100%;
     height: 60%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 25px 2fr;
-    grid-template-areas: 
-    "cantidad cantidad"
-    "menu orden";
+    display: flex;
+    justify-content: center;
 }
 
 #totalContainer{
-    grid-area: footer;
+    text-align: center;
 }
 
 #cantidadContainer{
-    grid-area: cantidad;
-    place-self: center;
+    text-align: center;
 }
 
 h3{
@@ -130,13 +111,6 @@ h3{
 
 #kitchenContainer{
     display: flex;
-}
-
-.card{
-    margin: 15px;
-    padding: 10px;
-    border-style: solid;
-    border-radius: 15px;
 }
 
 #alert{
@@ -179,4 +153,23 @@ h3{
 
 #chartDiv{
     width: 55vw;
+}
+
+.legend{
+    height: 15px;
+    width: 15px;
+    display: inline-block;
+}
+
+#legendContainer{
+    place-self: center;
+}
+
+#cantidadValor{
+    width:40px;
+    height: 30px;
+    font-size: 1.2rem;
+    text-align: center;
+    border-radius: 8px;
+    display: inline-block;
 }

@@ -51,12 +51,13 @@ function checkIfTable() {
   };
 };
 
+// Esta función crea el encabezado de la tabla de productos ordenados por el cliente
 function initTable() {
   $("#tableList").html("")
   $("#tableList").append(`<tr>
-                            <th>Producto</th>
-                            <th>Cantidad</th>
-                            <th>Precio</th>
+                            <th class="has-background-success-light has-text-grey">Producto</th>
+                            <th class="has-background-success-light has-text-grey">Cantidad</th>
+                            <th class="has-background-success-light has-text-grey">Precio</th>
                             <th></th>
                             <th></th>
                           </tr>`);
@@ -64,16 +65,17 @@ function initTable() {
 
 $("document").ready(checkIfTable());
 
+// Acá creo los botones de categorías del menú. Lo hago así por si en el menú se agregan nuevas categorías de ordenes, como Postre, se eliminan o modifican existentes.
 for (const category in menuList) {
   let categoryContainer = document.getElementById("categories");
   let categorySelector = document.createElement("button");
   categorySelector.innerHTML = category;
   categoryContainer.appendChild(categorySelector);
-  categorySelector.setAttribute("class", "categorySelectorClass");
+  categorySelector.setAttribute("class", "categorySelectorClass button is-small is-rounded has-background-link-light has-text-link mx-1");
   categorySelector.setAttribute("onclick", `categorySelector(this.innerHTML)`);
 }
 
-
+// Acá voy mostrando los productos y sus respectivos precios, dependiendo de la categoría seleccionada
 function categorySelector(category) {
 
   $("#product").html(""); //Vacío el div de botones.
@@ -81,7 +83,7 @@ function categorySelector(category) {
   let list = menuList[category];
 
   for (const element in list) {
-    $("#product").append(`<button id="boton-${element}" value="boton-${element}">
+    $("#product").append(`<button class="button my-1 mx-2 p-1 is-justify-content-space-between has-background-info-light has-text-info" id="boton-${element}" value="boton-${element}">
                             <p class="productoBoton">${list[element].producto}</p>
                             <p class="precioBoton">USD $${list[element].precio}</p>
                             </button>`);
@@ -90,7 +92,7 @@ function categorySelector(category) {
   };
 };
 
-
+//Esta función sirve para añadir los productos a la orden
 function addOrder(value) {
   //Saco la orden guardada en sessionStorage y creo un objeto orderAdded con esos valores.
   let food = sessionStorage.getItem(value);
@@ -101,7 +103,7 @@ function addOrder(value) {
     cantidad,
     orderedFood.precio
   );
-  //
+  
   let table = document.getElementById("tableList");
   let row = document.createElement("tr");
   let exist = false;
@@ -129,20 +131,24 @@ function addOrder(value) {
       order.setAttribute("id", `${element}-${i}`);
       row.appendChild(order);
     };
+
+    //Esto sirve para crear los botones de añadir o disminuir la cantidad de producto seleccionada.
     let plustd = document.createElement("td");
     let minustd = document.createElement("td");
     let plusButton = document.createElement("button");
     let minusButton = document.createElement("button");
     plusButton.setAttribute("onclick", `addOne(${i})`);
     plusButton.setAttribute("id", `plus-${i}`);
+    plusButton.setAttribute("class","button is-rounded is-small")
     minusButton.setAttribute("onclick", `deleteOne(${i})`);
     minusButton.setAttribute("id", `minus-${i}`);
+    minusButton.setAttribute("class","button is-rounded is-small")
     plusButton.innerHTML = "+";
     minusButton.innerHTML = "-";
     plustd.appendChild(plusButton);
     minustd.appendChild(minusButton);
-    row.appendChild(plustd);
     row.appendChild(minustd);
+    row.appendChild(plustd);
   };
   table.appendChild(row);
 
@@ -154,6 +160,7 @@ function addOrder(value) {
   document.getElementById("cantidadValor").value = "1";
 };
 
+//Con esta función hago tracking del total de la orden.
 function suma(element, precio, cantidad) {
   let total = parseFloat(element.innerHTML);
   sum = total;
@@ -162,17 +169,17 @@ function suma(element, precio, cantidad) {
   element.innerHTML = `${sum}`;
 };
 
-
+//Le da la funcionalidad al botón de añadir cantidad.
 function addOne(i) {
   modifyValue(i, "add");
 };
 
-
+//Le da la funcionalidad al botón de disminuir cantidad.
 function deleteOne(i) {
   modifyValue(i, "delete");
 };
 
-
+//Añade o elimina la cantidad del producto, dependiendo del botón que se use.
 function modifyValue(i, operation) {
   if (totalOrder[i].cantidad >= 0) {
     let modifiedCantidad = document.getElementById(`cantidad-${i}`);

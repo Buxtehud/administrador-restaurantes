@@ -6,50 +6,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <title>Document</title>
   </head>
   <body>
     <div id="orderContainer">
-      <a href="./mozo.html">Atrás</a>
+      <a class="button is-rounded my-4 ml-4" href="./mozo.html">Atrás</a>
       <header id="orden">
-        <h1>Seleción de orden</h1>
-        <h2 id="mesa"></h2>
+        <h1 class="is-size-1 my-4">Seleción de orden</h1>
+        <h2 class="is-size-3 my-4 " id="mesa"></h2>
       </header>
-      <div id="mainOrden">
-        <div id="cantidadContainer">
-          <input
-            type="number"
-            name="cantidadValor"
-            id="cantidadValor"
-            placeholder="1"
-            value="1"
-            min="1"
-          />
-        </div>
 
-        <section id="menuSelection">
-          <h3>Menú</h3>
-          <div id="categories"></div>
-          <div id="menuListed">
+      <div class="my-3" id="cantidadContainer">
+        <p class="is-size-6">Cantidad
+        <input
+          type="number"
+          name="cantidadValor"
+          id="cantidadValor"
+          placeholder="1"
+          value="1"
+          min="1"
+        />
+        </p>
+      </div>
+
+      <div id="mainOrden">
+                <section class="mx-3" id="menuSelection">
+          <h3 class="is-size-5 my-4">Menú</h3>
+          <div class="box">
+          <div class="m-3 px-3" id="categories"></div>
+          <div class="m-3 px-3" id="menuListed">
             <div id="product"></div>
           </div>
+        </div>
         </section>
 
-        <section id="orderedItems">
-          <h3>Orden</h3>
-          <div id="seleccionOrden">
-            <table id="tableList">
+        <section class="mx-3" id="orderedItems">
+          <h3 class="is-size-5 my-4">Orden</h3>
+          <div class="box" id="seleccionOrden">
+            <table class= "m-3 table is-striped" id="tableList">
             </table>
           </div>
         </section>
       </div>
+    </div>
 
-      <div id="totalContainer">
-        <p>Total:</p>
-        <div id="total">0</div>
-      </div>
-      <button id="sendKitchen">Enviar a Cocina</button>
-      <button id="closeTable">Cerrar mesa</button>
+    <div class="my-5" id="totalContainer">
+      <p class="my-0 is-size-5">Total:</p>
+      <div class="my-3 is-size-3" id="total">0</div>
+      <button class="button has-background-success my-2" id="sendKitchen">Enviar a Cocina</button>
+      <button class="button has-background-light my-2" id="closeTable">Cerrar mesa</button>
     </div>
 
     <div id="alert">¡Enviado a la cocina!</div>
